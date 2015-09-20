@@ -132,6 +132,13 @@ public interface DemoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAnd(DemoParser.AndContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Unary}
+	 * labeled alternative in {@link DemoParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnary(DemoParser.UnaryContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Div}
 	 * labeled alternative in {@link DemoParser#expression}.
 	 * @param ctx the parse tree
@@ -186,6 +193,12 @@ public interface DemoVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCall(DemoParser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DemoParser#primitiveType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrimitiveType(DemoParser.PrimitiveTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DemoParser#whileStatement}.
 	 * @param ctx the parse tree
