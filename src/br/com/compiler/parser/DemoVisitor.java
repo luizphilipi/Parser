@@ -205,4 +205,10 @@ public interface DemoVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForStat(DemoParser.ForStatContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DemoParser#whileStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatement(DemoParser.WhileStatementContext ctx);
 }

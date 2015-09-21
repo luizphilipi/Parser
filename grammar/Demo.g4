@@ -13,6 +13,7 @@ statement: println ';'
 		 | branch
 		 | expression ';'
 		 | forStat
+		 | whileStatement
 		 ;
 
 statementList: statement* ; 
@@ -73,3 +74,6 @@ COMMENT : ( '//' ~[\r\n]* '\r'? '\n' | '/*' .*? '*/' ) -> skip ;
 NUMBER: [0-9]+;
 STRING: '"' (~["\\\r\n] | '\\' (. | EOF))* '"' ;
 FLOAT: NUMBER+ '.' NUMBER+ ;
+
+whileStatement: 'while' '(' condition=expression ')' whileTrue=block
+    ;
