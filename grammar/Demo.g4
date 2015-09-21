@@ -12,6 +12,7 @@ statement: println ';'
 		 | assignment ';'
 		 | branch
 		 | expression ';'
+		 | forStat
 		 ;
 
 statementList: statement* ; 
@@ -63,6 +64,8 @@ primitiveType
     |   type='int'
     |   type='float'
     ;
+    
+forStat: 'for' '(' declaration=varDeclaration? ';' expr=expression? ';' assign=expression? ')' forBlock=block ;
 
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9]* ;
 WHITESPACE: [ \t\n\r]+ -> skip;
@@ -70,6 +73,3 @@ COMMENT : ( '//' ~[\r\n]* '\r'? '\n' | '/*' .*? '*/' ) -> skip ;
 NUMBER: [0-9]+;
 STRING: '"' (~["\\\r\n] | '\\' (. | EOF))* '"' ;
 FLOAT: NUMBER+ '.' NUMBER+ ;
-
-whileStatement: 'while' '(' condition=expression ')' block
-    ;

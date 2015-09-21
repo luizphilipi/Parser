@@ -61,4 +61,4 @@ FLOAT=35
 'string'=26
 'int'=27
 'float'=28
-'while'=29
+'for'=29
