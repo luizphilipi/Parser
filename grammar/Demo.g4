@@ -12,6 +12,7 @@ statement: println ';'
 		 | assignment ';'
 		 | branch
 		 | expression ';'
+		 | whileStatement
 		 ;
 
 statementList: statement* ; 
@@ -71,5 +72,5 @@ NUMBER: [0-9]+;
 STRING: '"' (~["\\\r\n] | '\\' (. | EOF))* '"' ;
 FLOAT: NUMBER+ '.' NUMBER+ ;
 
-whileStatement: 'while' '(' condition=expression ')' block
+whileStatement: 'while' '(' condition=expression ')' whileTrue=block
     ;
