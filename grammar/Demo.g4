@@ -39,6 +39,7 @@ expression: varName=IDENTIFIER operation=('++'|'--') #Unary
 		  | functionCall #funcCallExpression
 		  | string=STRING #String
 		  | r_float=FLOAT #Float
+		  | bool=BOOLEAN #Boolean
 		  ;
 		  
 expressionList: expressions+=expression (',' expressions+=expression)*
@@ -74,9 +75,12 @@ forStat: 'for' '(' declaration=varDeclaration? ';' expr=expression? ';' assign=e
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9]* ;
 WHITESPACE: [ \t\n\r]+ -> skip;
 COMMENT : ( '//' ~[\r\n]* '\r'? '\n' | '/*' .*? '*/' ) -> skip ;
+
 NUMBER: [0-9]+;
 STRING: '"' (~["\\\r\n] | '\\' (. | EOF))* '"' ;
 FLOAT: NUMBER+ '.' NUMBER+ ;
+BOOLEAN: 'true' | 'false' ;
+
 
 whileStatement: 'while' '(' condition=expression ')' whileTrue=block
     ;
