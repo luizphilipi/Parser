@@ -54,7 +54,7 @@ println: 'println(' argument=expression ')';
 print: 'print(' argument=expression ')';
 
 
-functionDefinition: type=primitiveType funcName=IDENTIFIER '(' params=parametersDeclaration ')' '{' statements=statementList 'return' returnValue=expression ';' '}' ;
+functionDefinition: returnType=primitiveType funcName=IDENTIFIER '(' params=parametersDeclaration ')' '{' statements=statementList 'return' returnValue=expression ';' '}' ;
 
 parametersDeclaration: declarations+=varDeclaration (',' declarations+=varDeclaration)*
                      | 
