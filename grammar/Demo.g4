@@ -4,7 +4,10 @@ program: programPart+;
 
 programPart: statement          #MainStatement
           | functionDefinition  #ProgPartFunctionDefinition
+          | constructorDeclaration #Construction
           ;
+
+constructorDeclaration: className=IDENTIFIER '(' params=parametersDeclaration ')' '{' statements=statementList '}' ;
 
 statement: println ';'
          | print ';'
@@ -18,7 +21,7 @@ statement: println ';'
 
 statementList: statement* ; 
 
-branch: 'if' '(' condition=expression ')' onTrue=block 'else' onFalse=block
+branch: 'if' '(' condition=expression ')' onTrue=block ('else' onFalse=block)?
       ;
 
 block: '{' statement* '}' ;
@@ -28,7 +31,7 @@ expression: varName=IDENTIFIER operation=('++'|'--') #Unary
 		  | left=expression '*' right=expression #Mult
 		  | left=expression '-' right=expression #Minus
 		  | left=expression '+' right=expression #Plus
-		  | left=expression operation=('<' | '<=' | '>' | '>=') right=expression #Relational
+		  | left=expression operation=('<' | '<=' | '>' | '>=' | '==' | '!=') right=expression #Relational
 		  | left=expression '&&' right=expression #And
 		  | left=expression '||' right=expression #Or
 		  | number=NUMBER #Number
