@@ -17,7 +17,10 @@ statement: println ';'
 		 | expression ';'
 		 | forStat
 		 | whileStatement
+		 | returnStatement
 		 ;
+
+returnStatement: 'return' returnValue=expression ';' ;
 
 statementList: statement* ; 
 
@@ -55,7 +58,7 @@ println: 'println(' argument=expression ')';
 print: 'print(' argument=expression ')';
 
 
-functionDefinition: returnType=primitiveType funcName=IDENTIFIER '(' params=parametersDeclaration ')' '{' statements=statementList 'return' returnValue=expression ';' '}' ;
+functionDefinition: returnType=primitiveType funcName=IDENTIFIER '(' params=parametersDeclaration ')' '{' statements=statementList '}' ;
 
 parametersDeclaration: declarations+=varDeclaration (',' declarations+=varDeclaration)*
                      | 
@@ -70,7 +73,7 @@ primitiveType
     |   type='float'
     ;
     
-forStat: 'for' '(' declaration=varDeclaration? ';' expr=expression? ';' assign=expression? ')' forBlock=block ;
+forStat: 'for' '(' declaration=varDeclaration? ';' expr=expression? ';' (expr2=expression | assign=assignment)? ')' forBlock=block ;
 
 IDENTIFIER: [a-zA-Z][a-zA-Z0-9]* ;
 WHITESPACE: [ \t\n\r]+ -> skip;
