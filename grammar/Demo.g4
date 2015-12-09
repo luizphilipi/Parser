@@ -83,7 +83,5 @@ NUMBER: [0-9]+;
 STRING: '"' (~["\\\r\n] | '\\' (. | EOF))* '"' ;
 FLOAT: NUMBER+ '.' NUMBER+ ;
 BOOLEAN: 'true' | 'false' ;
-
-
 whileStatement: 'while' '(' condition=expression ')' whileTrue=block
     ;
